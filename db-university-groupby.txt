@@ -13,6 +13,11 @@ QUERY 2:
 
 CONTARE GLI INSEGNATI CHE HANNO L'UFFICIO NELLO STESSO EDIFICIO
 
+SELECT COUNT(*) AS 'ufficio docenti',`office_address`
+FROM `teachers`
+GROUP BY `office_address`;
+
+
 
 
 QUERY 3:
