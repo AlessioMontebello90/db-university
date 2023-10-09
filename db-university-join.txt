@@ -44,8 +44,40 @@ IN ORDINE ALFABETICO PER COGNOME E NOME
 SELECT `students`.`surname`, `students`.`name`, `departments`.`name`, `degrees`.`name`, `degrees`.`level`
 FROM `students`
 JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
-JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`;
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
 ORDER BY `students`.`surname`, `students`.`name`;
+
+QUERY 5:
+
+SELEZIONARE TUTTI I CORSI DI LAUREA CON I RELATIVI CORSI E INSEGNANTI
+
+SELECT `degrees`.`name`, `courses`.`name`, `teachers`.`name`, `teachers`.`surname`
+FROM `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `teachers` ON `courses`.`id` = `teachers`.`id`;
+
+
+
+QUERY 6:
+
+SELEZIONARE TUTTI I DOCENTI CHE INSEGNANO NEL DIPARTIMENTO DI MATEMATICA (54)
+
+SELECT  `teachers`.`name`, `teachers`.`surname`, `departments`.`name`
+FROM `teachers`
+JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Matematica';
+
+
+
+QUERY BONUS:
+
+SELEZIONARE PER OGNI STUDENTE IL NUMERO DI TENTATIVI SOSTENUTI PER OGNI ESAME,
+STAMPANDO ANCHE IL VOTO MASSIMO.SUCESSIVAMENTE FILTRARE I TENTATIVI CON VOTO MINIMO 18
+
+
 
 
 
