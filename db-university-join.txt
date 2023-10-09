@@ -1,0 +1,45 @@
+QUERY 1:
+
+SELEZIONARE TTU GLI STUDENTI ISCRITTI AL CORSO DI LAUREA IN ECONOMIA
+
+FROM `students` 
+JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name`= 'Corso di Laurea in Economia';
+
+
+
+QUERY 2:
+
+SELEZIONARE TUTTI I CORSI DI LAUREA MAGISTRALE DEL DIPARTIMENTO DI NEUROSCIENZE
+
+SELECT DISTINCT `departments`.`name`, `level`
+FROM `departments`
+JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+WHERE `departments`.`name` = 'Dipartimento Di Neuroscienze' AND `level` = 'Magistrale';
+
+
+
+QUERY 3:
+
+SELEZIONARE TUTTI I CORSI IN CUI INSEGNA FULVIO AMATO (ID=44)
+
+FROM `teachers`
+JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+WHERE `teachers`.`name` = 'Fulvio' AND `teachers`.`surname` = 'Amato';
+
+
+
+QUERY 4:
+
+SELEZIONARE TUTTI GLI STUDENTI CON I DATI RELATIVI AL CORSO DI LAUREA A CUI SONO ISCRITTI E IL RELATIVO DIPARTIMENTO, 
+IN ORDINE ALFABETICO PER COGNOME E NOME
+
+SELECT `students`.`surname`, `students`.`name`, `departments`.`name`, `degrees`.`name`, `degrees`.`level`
+FROM `students`
+JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`;
+ORDER BY `students`.`surname`, `students`.`name`;
+
+
+
